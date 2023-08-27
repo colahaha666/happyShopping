@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div>
-      欢乐购
+    <div style={{ fontSize: ".2rem" }}>
+      欢乐购欢乐购欢乐购欢乐购欢乐购欢乐
     </div>
   );
 }
