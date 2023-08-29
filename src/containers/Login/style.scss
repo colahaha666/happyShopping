@@ -1,0 +1,72 @@
+.login-page {
+    .tab {
+        padding: .5rem 0 .77rem 0;
+        line-height: .21rem;
+        margin: 0 auto;
+        width: 1.14rem;
+        font-size: .18rem;
+        color: #242424;
+
+        &-item {
+            display: inline-block;
+            font-weight: bold;
+
+            &-left {
+                color: #73D13D;
+            }
+
+            &-right {
+                float: right;
+            }
+        }
+    }
+
+    .form {
+        margin-bottom: .6rem;
+
+        &-item {
+            display: flex;
+            padding: .16rem .3rem;
+            line-height: .24rem;
+            font-size: .16rem;
+
+            &-title {
+                color: #000000;
+                width: .48rem;
+                margin-right: .42rem;
+            }
+
+            &-content {
+                color: #242424;
+                flex: 1;
+                border: none;
+                outline: none;
+
+                &::placeholder {
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    .submit {
+        margin: 0 .3rem .94rem;
+        border-radius: 25px;
+        background: #73D13D;
+        box-shadow: 0px 6px 6px 0px #FFD9F7BE;
+        color: #FFFFFFFF;
+        font-size: .16rem;
+        line-height: .5rem;
+        letter-spacing: 0px;
+        text-align: center;
+
+    }
+
+    .notice {
+        color: #CF1322;
+        font-size: .16rem;
+        line-height: .24rem;
+        text-align: center;
+        letter-spacing: 0px;
+    }
+}
