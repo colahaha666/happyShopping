@@ -1,36 +1,27 @@
-import { useState } from 'react';
 import './style.scss';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import useRequest from '../../utils/useRequest';
 
+type ResponseType = {
+    name: string;
+}
 
 const Login = () => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
 
-    const [date, SetDate] = useState(null);
-    const [loaded, setLoaded] = useState(false);
-    const [error, setError] = useState("");
+    const { data, error, request, cancel } = useRequest<ResponseType>('/a.json', 'GET', {})
 
     function handleSubmitBtnClick() {
-        axios.get('/a.json').then((response) => {
-            setLoaded(true);
-            SetDate(response.data);
-        }).catch((error) => {
-            setLoaded(true);
-            setError(error.message);
-        })
+        request();
     }
 
-    if (loaded) {
-        setLoaded(false);
-        if (date) {
-            alert('请求成功')
-        } else {
-            alert(error);
-        }
-    }
+    useEffect(() => {
+        data && alert(data.name)
+        error && alert(error);
+    }, [data, error])
 
     const navigate = useNavigate();
     const handleItemRightClick = () => {
