@@ -1,41 +1,58 @@
 import './style.scss';
-import { useEffect, useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useRequest from '../../utils/useRequest';
+import Modal, { ModalInterfaceType } from '../../components/Modal';
 
 type ResponseType = {
-    name: string;
+    success: boolean,
+    data: {
+        token: string
+    }
+
 }
 
 const Login = () => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
-
-    const { data, error, request, cancel } = useRequest<ResponseType>('/a.json', 'GET', {})
-
-    function handleSubmitBtnClick() {
-        request();
-    }
-
-    useEffect(() => {
-        data && alert(data.name)
-        error && alert(error);
-    }, [data, error])
+    const modalRef = useRef<ModalInterfaceType>(null);
 
     const navigate = useNavigate();
-    const handleItemRightClick = () => {
-        navigate('/sign');
+
+    const { request } = useRequest<ResponseType>()
+
+    function handleSubmitBtnClick() {
+        if (!phoneNumber) {
+            modalRef.current?.showMessage('Please enter a phone number')
+            return;
+        }
+        if (!password) {
+            modalRef.current?.showMessage('Please enter a password')
+            return;
+        }
+        request({
+            url: '/login.json',
+            method: 'POST',
+            data: {
+                phone: phoneNumber,
+                password: password,
+            }
+        }).then((data) => {
+            const { data: { token } } = data;
+            if (token) {
+                localStorage.setItem('token', token)
+                navigate('/home');
+            }
+            data && console.log(data);
+
+        }).catch((e: any) => {
+            modalRef.current?.showMessage(e?.message || '异常错误')
+        });
     }
-    const handleItemLeftClick = () => {
-        navigate('/login');
-    }
+
     return (
-        <div className="page login-page">
-            <div className="tab">
-                <div className="tab-item tab-item-left" onClick={handleItemLeftClick}>登录</div>
-                <div className="tab-item tab-item-right" onClick={handleItemRightClick}>注册</div>
-            </div>
+        <>
             <div className="form">
                 <div className="form-item">
                     <div className="form-item-title">手机号</div>
@@ -63,7 +80,8 @@ const Login = () => {
             <p className='notice'>
                 *登录即表示您赞同使用条款及隐私政策
             </p>
-        </div>
+            <Modal ref={modalRef} />
+        </>
     )
 }
 

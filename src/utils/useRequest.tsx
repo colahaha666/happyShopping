@@ -1,7 +1,11 @@
-import axios, { AxiosRequestConfig, Method } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function useRequest<T>(url: string, method: Method, payload: AxiosRequestConfig) {
+function useRequest<T>(options: AxiosRequestConfig = {
+    url: '/', method: 'GET', data: {}, params: {}
+}) {
+    const navigate = useNavigate();
     const [data, setData] = useState<T | null>(null);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState('');
@@ -11,24 +15,37 @@ function useRequest<T>(url: string, method: Method, payload: AxiosRequestConfig)
         controllerRef.current.abort();
     }
 
-    const request = async () => {
+    const request = (requestOptions?: AxiosRequestConfig) => {
         setData(null);
         setLoaded(false);
         setError('');
 
-        try {
-            const response = await axios.request<T>({
-                url,
-                method,
-                signal: controllerRef.current.signal,
-                data: payload
-            })
+        const loginToken = localStorage.getItem('token');
+        const headers = loginToken ? {
+            'token': loginToken
+        } : {}
+
+        return axios.request<T>({
+            url: requestOptions?.url || options.url,
+            method: requestOptions?.method || options.method,
+            signal: controllerRef.current.signal,
+            data: requestOptions?.data || options.data,
+            params: requestOptions?.params || options.params,
+            headers,
+        }).then(response => {
             setData(response.data);
-        } catch (e: any) {
+            return response.data;
+        }).catch((e: any) => {
+            if (e?.response?.status === 403) {
+                localStorage.removeItem('token');
+                navigate('/account/login');
+            }
             setError(e.message || 'unknown request error');
-        } finally {
+            throw new Error(e);
+        }).finally(() => {
             setLoaded(true);
-        }
+        })
+
     }
     return { data, loaded, error, request, cancel }
 }

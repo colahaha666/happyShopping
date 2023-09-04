@@ -11,7 +11,7 @@ const Guide = () => {
 
     const navigate = useNavigate();
     const handleIconClick = useCallback(() => {
-        navigate('/login');
+        localStorage.getItem('token') ? navigate('/home') : navigate('/account/login');
     }, [navigate])
 
     return (
