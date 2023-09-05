@@ -1,21 +1,63 @@
 import 'swiper/css';
 import './style.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import useRequest from '../../utils/useRequest';
+
+const localLocation = localStorage.getItem('location');
+const locationHistory = localLocation ? JSON.parse(localLocation) : null;
+
+const defaultRequestData = {
+    url: '/home.json',
+    method: 'POST',
+    data: {
+        latitude: locationHistory ? locationHistory.latitude : 37.7304167,
+        longitude: locationHistory ? locationHistory.longitude : -122.384425,
+    }
+}
 
 const Home = () => {
+    const [requestData, setRequestData] = useState(defaultRequestData)
+    const { request } = useRequest(requestData)
+
+    useEffect(() => {
+        request().then(data => {
+            console.log(data);
+
+        }).catch(e => {
+            console.log(e);
+
+        })
+    }, [requestData, request])
+
+    useEffect(() => {
+        if (navigator.geolocation && !locationHistory) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude } = position.coords;
+                localStorage.setItem('location', JSON.stringify({
+                    latitude, longitude
+                }));
+                setRequestData({
+                    ...defaultRequestData, data: {
+                        latitude, longitude
+                    }
+                })
+            }, e => {
+                console.log(e);
+            }, { timeout: 500 });
+        }
+    }, [])
+
     const [page, setPage] = useState(1);
     return (
         <div className='page home-page'>
             <div className='banner'>
                 <h3 className='location'>
-                    <span className='iconfont'>&#xe67c;</span>
+                    <span className='iconfont icon-didian'></span>
                     优果购(昌平店)
                 </h3>
                 <div className='search'>
-                    <span className='iconfont'>
-                        &#xe64e;
-                    </span>
+                    <span className='iconfont icon-search'></span>
                     请输入你需要搜索的内容
                 </div>
                 <div className='swiper-area'>

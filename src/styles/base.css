@@ -10,8 +10,9 @@ input:-webkit-autofill:focus {
     box-shadow: 0 0 0 60px #eee inset;
 }
 
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-    font-family: 'iconfont';
+    font-family: "iconfont";
     /* Project id 4226858 */
     src: url('//at.alicdn.com/t/c/font_4226858_2kg2338dabe.woff2?t=1693836058073') format('woff2'),
         url('//at.alicdn.com/t/c/font_4226858_2kg2338dabe.woff?t=1693836058073') format('woff'),
@@ -25,6 +26,20 @@ input:-webkit-autofill:focus {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-search:before {
+    content: "\e6e1";
+    font-weight: bolder;
+}
+
+.icon-didian:before {
+    content: "\e61c";
+}
+
+.icon-cc-arrow-right:before {
+    content: "\e60c";
+}
+
 
 .page {
     position: relative;

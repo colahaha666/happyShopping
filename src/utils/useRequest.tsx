@@ -1,10 +1,12 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function useRequest<T>(options: AxiosRequestConfig = {
+const defaultRequestConfig = {
     url: '/', method: 'GET', data: {}, params: {}
-}) {
+}
+
+function useRequest<T>(options: AxiosRequestConfig = defaultRequestConfig) {
     const navigate = useNavigate();
     const [data, setData] = useState<T | null>(null);
     const [loaded, setLoaded] = useState(false);
@@ -15,7 +17,7 @@ function useRequest<T>(options: AxiosRequestConfig = {
         controllerRef.current.abort();
     }
 
-    const request = (requestOptions?: AxiosRequestConfig) => {
+    const request = useCallback((requestOptions?: AxiosRequestConfig) => {
         setData(null);
         setLoaded(false);
         setError('');
@@ -46,7 +48,7 @@ function useRequest<T>(options: AxiosRequestConfig = {
             setLoaded(true);
         })
 
-    }
+    }, [navigate, options]);
     return { data, loaded, error, request, cancel }
 }
 

@@ -44,7 +44,6 @@ const Login = () => {
                 localStorage.setItem('token', token)
                 navigate('/home');
             }
-            data && console.log(data);
 
         }).catch((e: any) => {
             modalRef.current?.showMessage(e?.message || '异常错误')
