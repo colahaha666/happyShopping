@@ -129,6 +129,24 @@ const Home = () => {
 
                 </div>
             </div>
+            <div className="docker">
+                <div className="docker-item">
+                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
+                    <p className='docker-ite-title'>首页</p>
+                </div>
+                <div className="docker-item">
+                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
+                    <p className='docker-ite-title'>首页</p>
+                </div>
+                <div className="docker-item">
+                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
+                    <p className='docker-ite-title'>首页</p>
+                </div>
+                <div className="docker-item">
+                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
+                    <p className='docker-ite-title'>首页</p>
+                </div>
+            </div>
         </div>
     )
 }
