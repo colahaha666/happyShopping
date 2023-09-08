@@ -1,34 +1,25 @@
 import './style.scss';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useRequest from '../../utils/useRequest';
-import Modal, { ModalInterfaceType } from '../../components/Modal';
-
-type ResponseType = {
-    success: boolean,
-    data: {
-        token: string
-    }
-
-}
+import useRequest from '../../hook/useRequest';
+import { message } from '../../utils/message';
+import type { LoginResponseType } from './types';
 
 const Login = () => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
-    const modalRef = useRef<ModalInterfaceType>(null);
-
     const navigate = useNavigate();
 
-    const { request } = useRequest<ResponseType>()
+    const { request } = useRequest<LoginResponseType>({ manual: true })
 
     function handleSubmitBtnClick() {
         if (!phoneNumber) {
-            modalRef.current?.showMessage('Please enter a phone number')
+            message('Please enter a phone number')
             return;
         }
         if (!password) {
-            modalRef.current?.showMessage('Please enter a password')
+            message('Please enter a password')
             return;
         }
         request({
@@ -46,7 +37,7 @@ const Login = () => {
             }
 
         }).catch((e: any) => {
-            modalRef.current?.showMessage(e?.message || '异常错误')
+            message(e.message || '异常错误')
         });
     }
 
@@ -79,7 +70,6 @@ const Login = () => {
             <p className='notice'>
                 *登录即表示您赞同使用条款及隐私政策
             </p>
-            <Modal ref={modalRef} />
         </>
     )
 }

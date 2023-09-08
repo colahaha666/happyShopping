@@ -13,8 +13,6 @@ const Account = () => {
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            console.log(111);
-
             navigate('/home');
         }
     }, [navigate])

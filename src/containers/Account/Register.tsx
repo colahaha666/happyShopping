@@ -1,46 +1,42 @@
 import './style.scss';
-import { useState, useRef } from 'react';
-import useRequest from '../../utils/useRequest';
-import Modal, { ModalInterfaceType } from '../../components/Modal';
+import { useState } from 'react';
+import useRequest from '../../hook/useRequest';
+import { message } from '../../utils/message';
+import { useNavigate } from 'react-router-dom';
+import type { RegisterResponseType } from './types';
 
-type ResponseType = {
-    success: boolean,
-    data: boolean
-
-}
 
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const [useName, setUseName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState('');
-    const modalRef = useRef<ModalInterfaceType>(null);
 
 
-    const { request } = useRequest<ResponseType>()
+    const { request } = useRequest<RegisterResponseType>({ manual: true });
 
     function handleSubmitBtnClick() {
-        console.log(111);
-
         if (!useName) {
-            modalRef.current?.showMessage('Please enter a username')
+            message('Please enter a username')
             return;
         }
         if (!phoneNumber) {
-            modalRef.current?.showMessage('Please enter a phone number')
+            message('Please enter a phone number')
             return;
         }
         if (!password) {
-            modalRef.current?.showMessage('Please enter a password')
+            message('Please enter a password')
             return;
         }
         if (password.length < 6) {
-            modalRef.current?.showMessage('输入的密码不得小于六位')
+            message('请输入的密码不少于六位')
             return;
         } if (password !== checkPassword) {
-            modalRef.current?.showMessage('两次输入的密码不一致')
+            message('两次输入的密码不一致')
             return;
         }
         request({
@@ -52,9 +48,11 @@ const Register = () => {
                 password: password,
             }
         }).then((data) => {
-            data && console.log(data);
+            if (data?.success) {
+                navigate('/account/login')
+            }
         }).catch((e: any) => {
-            modalRef.current?.showMessage(e?.message || '异常错误')
+            message(e?.message || '异常错误')
         });
     }
 
@@ -77,7 +75,6 @@ const Register = () => {
                         value={phoneNumber}
                         className="form-item-content"
                         placeholder="请输入手机号"
-                        type="password"
                         onChange={e => setPhoneNumber(e.target.value)}
                     />
                 </div>
@@ -105,7 +102,6 @@ const Register = () => {
             <div className="submit" onClick={handleSubmitBtnClick}>
                 注册
             </div>
-            <Modal ref={modalRef} />
         </>
     )
 }

@@ -2,6 +2,7 @@
     .banner {
         height: 2.3rem;
         background: #73D13D;
+        position: relative;
 
         .location {
             line-height: .24rem;
@@ -33,7 +34,6 @@
         }
 
         .swiper-area {
-            position: relative;
 
             .swiper-item {
                 margin-left: .18rem;
@@ -48,7 +48,7 @@
                 position: absolute;
                 z-index: 999;
                 left: 50%;
-                bottom: .26rem;
+                bottom: .36rem;
                 transform: translateX(-50%);
                 color: #FFF;
                 font-size: .12rem;
@@ -60,5 +60,113 @@
             }
         }
 
+    }
+
+    .category {
+        position: relative;
+        margin-top: -.2rem;
+        background-color: #fff;
+        border-radius: .2rem .2rem 0 0;
+        width: 3.75rem;
+        height: 1.9rem;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: .12rem;
+
+        &-item {
+            flex: 0 0 25%;
+            text-align: center;
+
+            &-img {
+                width: .41rem;
+                height: .36rem;
+                margin: .16rem 0 .13rem;
+            }
+
+            &-desc {
+                color: #242424;
+
+                line-height: .18rem;
+            }
+        }
+    }
+
+    .card {
+        background-color: #fff;
+        font-size: .12rem;
+        color: #242424;
+        margin-top: .1rem;
+
+        &-title {
+            position: relative;
+            width: 3.55rem;
+            line-height: .24rem;
+            font-size: .2rem;
+            padding: .14rem .1rem 0 .1rem;
+
+            &-img {
+                float: left;
+                width: .24rem;
+            }
+
+            &-more {
+                position: absolute;
+                bottom: 0;
+                right: .1rem;
+                font-size: .16rem;
+                line-height: .18rem;
+
+                .iconfont {
+                    margin-left: .06rem;
+                }
+            }
+        }
+
+        &-content {
+            overflow-x: scroll;
+            white-space: nowrap;
+            height: 1.82rem;
+            margin-top: .2rem;
+            padding-bottom: .14rem;
+
+            &-item:nth-child(1) {
+                padding-left: .1rem;
+            }
+
+            &-item {
+                display: inline-block;
+                width: 1.1rem;
+                margin-right: .06rem;
+
+                &-img {
+                    width: 1.1rem;
+                    height: 1.1rem;
+                }
+
+                &-desc {
+                    margin: .06rem;
+                    color: #242424;
+                    font-style: .12rem;
+                    line-height: .18rem;
+                    white-space: normal;
+                    word-break: break-all;
+                }
+
+                &-price {
+                    position: relative;
+                    color: #F81C00;
+                    font-size: .2rem;
+                    line-height: .2rem;
+                    margin: 0 .06rem;
+
+                    .iconfont {
+                        position: absolute;
+                        right: .06rem;
+                        bottom: 0;
+                        color: #73D13D;
+                    }
+                }
+            }
+        }
     }
 }
