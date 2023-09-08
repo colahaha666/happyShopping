@@ -8,6 +8,17 @@ export type ResponseType = {
         banners: Array<{
             id: "1135",
             url: string
-        }>
+        }>,
+        categories: Array<{
+            id: string,
+            name: string,
+            imgUrl: string
+        }>,
+        freshes: Array<{
+            id: string,
+            name: string,
+            imgUrl: string
+            price: string
+        }>,
     }
 }

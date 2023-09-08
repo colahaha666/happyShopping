@@ -28,6 +28,8 @@
             border-radius: .18rem;
 
             .iconfont {
+                font-size: .2rem;
+                font-weight: bolder;
                 margin-left: .12rem;
                 margin-right: .08rem;
             }
@@ -144,6 +146,11 @@
                 }
 
                 &-desc {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
                     margin: .06rem;
                     color: #242424;
                     font-style: .12rem;
@@ -156,7 +163,7 @@
                     position: relative;
                     color: #F81C00;
                     font-size: .2rem;
-                    line-height: .2rem;
+                    line-height: .24rem;
                     margin: 0 .06rem;
 
                     .iconfont {

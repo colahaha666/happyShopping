@@ -45,11 +45,11 @@ const Home = () => {
         <div className='page home-page'>
             <div className='banner'>
                 <h3 className='location'>
-                    <span className='iconfont icon-didian'></span>
+                    <span className='iconfont'>&#xe61c;</span>
                     {data?.data.location.address}
                 </h3>
                 <div className='search'>
-                    <span className='iconfont icon-search'></span>
+                    <span className='iconfont'>&#xe6e1;</span>
                     请输入你需要搜索的内容
                 </div>
                 <div className='swiper-area'>
@@ -74,70 +74,22 @@ const Home = () => {
                 </div>
             </div>
             <div className="category">
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
-                <div className="category-item">
-                    <img
-                        src="http://statics.dell-lee.com/shopping/category-1.png"
-                        alt="新鲜蔬菜"
-                        className='category-item-img'
-                    />
-                    <p className='category-item-desc'>新鲜蔬菜</p>
-                </div>
+                {
+                    (data?.data.categories || []).map(item => {
+                        return (
+                            <div className="category-item">
+                                <img
+                                    src={item.imgUrl}
+                                    alt={item.name}
+                                    className='category-item-img'
+                                />
+                                <p className='category-item-desc'>{item.name}</p>
+                            </div>
+                        )
+                    })
+                }
+
+
             </div>
             <div className="card">
                 <h3 className='card-title'>
@@ -155,60 +107,27 @@ const Home = () => {
                     </div>
                 </h3>
                 <div className="card-content">
-                    <div className="card-content-item">
-                        <img
-                            className='card-content-item-img'
-                            src="http://statics.dell-lee.com/shopping/hot.png"
-                            alt=""
-                        />
-                        <p className='card-content-item-desc'>金锣 国产猪肉 去皮猪五花肉块 …</p>
-                        <p className='card-content-item-price'>
-                            <span className='card-content-item-yen'>&yen;</span>
-                            66.9
-                            <span className="iconfont">&#xe661;</span>
-                        </p>
-                    </div>
-                    <div className="card-content-item">
-                        <img
-                            className='card-content-item-img'
-                            src="http://statics.dell-lee.com/shopping/hot.png"
-                            alt=""
-                        />
-                        <p className='card-content-item-desc'>金锣 国产猪肉 去皮猪五花肉块 …</p>
-                        <p className='card-content-item-price'>
-                            <span className='card-content-item-yen'>&yen;</span>
-                            66.9
-                            <span className="iconfont">&#xe661;</span>
-                        </p>
-                    </div>
-                    <div className="card-content-item">
-                        <img
-                            className='card-content-item-img'
-                            src="http://statics.dell-lee.com/shopping/hot.png"
-                            alt=""
-                        />
-                        <p className='card-content-item-desc'>金锣 国产猪肉 去皮猪五花肉块 …</p>
-                        <p className='card-content-item-price'>
-                            <span className='card-content-item-yen'>&yen;</span>
-                            66.9
-                            <span className="iconfont">&#xe661;</span>
-                        </p>
-                    </div>
-                    <div className="card-content-item">
-                        <img
-                            className='card-content-item-img'
-                            src="http://statics.dell-lee.com/shopping/hot.png"
-                            alt=""
-                        />
-                        <p className='card-content-item-desc'>金锣 国产猪肉 去皮猪五花肉块 …</p>
-                        <p className='card-content-item-price'>
-                            <span className='card-content-item-yen'>&yen;</span>
-                            66.9
-                            <span className="iconfont">&#xe661;</span>
-                        </p>
-                    </div>
-                </div>
+                    {
+                        (data?.data.freshes || []).map(item => {
+                            return (
+                                <div className="card-content-item">
+                                    <img
+                                        className='card-content-item-img'
+                                        src={item.imgUrl}
+                                        alt={item.name}
+                                    />
+                                    <p className='card-content-item-desc'>{item.name}</p>
+                                    <p className='card-content-item-price'>
+                                        <span className='card-content-item-yen'>&yen;</span>
+                                        {item.price}
+                                        <span className="iconfont">&#xe661;</span>
+                                    </p>
+                                </div>
+                            )
+                        })
+                    }
 
+                </div>
             </div>
         </div>
     )
