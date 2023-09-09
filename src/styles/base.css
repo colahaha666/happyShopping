@@ -11,12 +11,11 @@ input:-webkit-autofill:focus {
 }
 
 @font-face {
-    font-family: 'iconfont';
-    /* Project id 4226858 */
-    src: url('//at.alicdn.com/t/c/font_4226858_o9k16vrpt6d.woff2?t=1694096450005') format('woff2'),
-        url('//at.alicdn.com/t/c/font_4226858_o9k16vrpt6d.woff?t=1694096450005') format('woff'),
-        url('//at.alicdn.com/t/c/font_4226858_o9k16vrpt6d.ttf?t=1694096450005') format('truetype');
-}
+    font-family: 'iconfont';  /* Project id 4226858 */
+    src: url('//at.alicdn.com/t/c/font_4226858_h97bipm1p4.woff2?t=1694239156427') format('woff2'),
+         url('//at.alicdn.com/t/c/font_4226858_h97bipm1p4.woff?t=1694239156427') format('woff'),
+         url('//at.alicdn.com/t/c/font_4226858_h97bipm1p4.ttf?t=1694239156427') format('truetype');
+  }
 
 .iconfont {
     font-family: "iconfont" !important;

@@ -1,8 +1,12 @@
 .home-page {
+    overflow-y: scroll;
+    padding-bottom: .5rem;
+    background: #F5F9FA;
+
     .banner {
+        position: relative;
         height: 2.3rem;
         background: #73D13D;
-        position: relative;
 
         .location {
             line-height: .24rem;
@@ -98,6 +102,7 @@
         font-size: .12rem;
         color: #242424;
         margin-top: .1rem;
+        height: 2.6rem;
 
         &-title {
             position: relative;
@@ -127,7 +132,6 @@
         &-content {
             overflow-x: scroll;
             white-space: nowrap;
-            height: 1.82rem;
             margin-top: .2rem;
             padding-bottom: .14rem;
 
@@ -175,5 +179,41 @@
                 }
             }
         }
+    }
+
+    .docker {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: flex;
+        color: #B3C1C4;
+        background-color: #fff;
+        border-top: .01rem solid #f5f9fa;
+        font-size: .12rem;
+        height: .49rem;
+        text-align: center;
+
+        &-item {
+            flex: 1;
+
+            &-icon {
+                margin: .04rem 0;
+                font-size: .18rem;
+            }
+        }
+
+        &-item-active {
+            color: #73d13d;
+        }
+    }
+
+    .bottom {
+        line-height: 1rem;
+        color: #B3C1C4;
+        font-size: .12rem;
+        text-align: center;
+
     }
 }

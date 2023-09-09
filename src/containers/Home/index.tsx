@@ -1,10 +1,12 @@
 import 'swiper/css';
 import './style.scss';
 import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+
 import useRequest from '../../hook/useRequest';
 import type { ResponseType } from './types';
-import { message } from '../../utils/message';
+import Banner from './components/Banner';
+import CateGory from './components/Category';
+import Card from './components/Card';
 
 const localLocation = localStorage.getItem('location');
 const locationHistory = localLocation ? JSON.parse(localLocation) : null;
@@ -35,116 +37,45 @@ const Home = () => {
                     }
                 })
             }, e => {
-                message(e.message)
+                console.log(e.message);
             }, { timeout: 500 });
         }
     }, [])
 
-    const [page, setPage] = useState(1);
+    let { location, banners, categories, freshes } = data?.data || {}
+    // let location, banners, categories, freshes = undefined
+    // const dataResult = data?.data
+    // if (dataResult) {
+    //     location = dataResult.location;
+    //     banners = dataResult.banners;
+    //     categories = dataResult.categories;
+    //     freshes = dataResult.freshes;
+    // }
     return (
         <div className='page home-page'>
-            <div className='banner'>
-                <h3 className='location'>
-                    <span className='iconfont'>&#xe61c;</span>
-                    {data?.data.location.address}
-                </h3>
-                <div className='search'>
-                    <span className='iconfont'>&#xe6e1;</span>
-                    请输入你需要搜索的内容
-                </div>
-                <div className='swiper-area'>
-                    <Swiper
-                        spaceBetween={0}
-                        slidesPerView={1}
-                        onSlideChange={(e) => setPage(e.activeIndex + 1)}
-                    >
-                        {
-                            (data?.data.banners || []).map(item => {
-                                return (
-                                    <SwiperSlide key={item.id}>
-                                        <div className='swiper-item'>
-                                            <img className='swiper-item-img' src={item.url} alt='轮播图' />
-                                        </div>
-                                    </SwiperSlide>
-                                )
-                            })
-                        }
-                    </Swiper>
-                    <div className='pagination'>{page}/{data?.data.banners.length || 0}</div>
-                </div>
-            </div>
-            <div className="category">
-                {
-                    (data?.data.categories || []).map(item => {
-                        return (
-                            <div className="category-item">
-                                <img
-                                    src={item.imgUrl}
-                                    alt={item.name}
-                                    className='category-item-img'
-                                />
-                                <p className='category-item-desc'>{item.name}</p>
-                            </div>
-                        )
-                    })
-                }
+            <Banner location={location} banners={banners} />
+            <CateGory categories={categories} />
+            <Card list={freshes} title={"新品尝鲜"} />
 
-
-            </div>
-            <div className="card">
-                <h3 className='card-title'>
-                    <img
-                        className='card-title-img'
-                        src="http://statics.dell-lee.com/shopping/hot.png"
-                        alt="新品尝鲜"
-                    />
-                    新品尝鲜
-                    <div className="card-title-more">
-                        更多
-                        <span className='iconfont'>
-                            &#xe614;
-                        </span>
-                    </div>
-                </h3>
-                <div className="card-content">
-                    {
-                        (data?.data.freshes || []).map(item => {
-                            return (
-                                <div className="card-content-item">
-                                    <img
-                                        className='card-content-item-img'
-                                        src={item.imgUrl}
-                                        alt={item.name}
-                                    />
-                                    <p className='card-content-item-desc'>{item.name}</p>
-                                    <p className='card-content-item-price'>
-                                        <span className='card-content-item-yen'>&yen;</span>
-                                        {item.price}
-                                        <span className="iconfont">&#xe661;</span>
-                                    </p>
-                                </div>
-                            )
-                        })
-                    }
-
-                </div>
+            <div className="bottom">
+                —— 我是有底线的 ——
             </div>
             <div className="docker">
                 <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
+                    <p className='iconfont docker-item-icon docker-item-active'>&#xe604;</p>
                     <p className='docker-ite-title'>首页</p>
                 </div>
                 <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
-                    <p className='docker-ite-title'>首页</p>
+                    <p className='iconfont docker-item-icon'>&#xe60d;</p>
+                    <p className='docker-ite-title'>分类</p>
+                </div>
+                <div className="docker-item">
+                    <p className='iconfont docker-item-icon'>&#xe600;</p>
+                    <p className='docker-ite-title'>购物车</p>
                 </div>
                 <div className="docker-item">
                     <p className='iconfont docker-item-icon'>&#xe61c;</p>
-                    <p className='docker-ite-title'>首页</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
-                    <p className='docker-ite-title'>首页</p>
+                    <p className='docker-ite-title'>我的</p>
                 </div>
             </div>
         </div>
