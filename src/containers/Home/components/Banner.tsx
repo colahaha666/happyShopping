@@ -19,13 +19,16 @@ const Banner = (props: BannerPropsType) => {
     const handleLocationClick = () => {
         navigate('/nearby')
     }
+    const handleSearchClick = () => {
+        navigate('/search')
+    }
     return (
         <div className='banner'>
             <h3 className='location' onClick={handleLocationClick}>
                 <span className='iconfont'>&#xe61c;</span>
                 {location?.address}
             </h3>
-            <div className='search'>
+            <div className='search' onClick={handleSearchClick}>
                 <span className='iconfont'>&#xe6e1;</span>
                 请输入你需要搜索的内容
             </div>

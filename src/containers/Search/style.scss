@@ -1,0 +1,77 @@
+.search-page {
+    .search {
+        display: flex;
+        padding: .08rem 0;
+
+        .search-back-link {
+            text-decoration: none;
+        }
+
+        &-back-icon {
+            line-height: .32rem;
+            width: .48rem;
+            font-size: .18rem;
+            color: #242424;
+            text-align: center;
+        }
+
+        &-area {
+            display: flex;
+            flex: 1;
+            background-color: #F5F9FA;
+            border-radius: .16rem;
+            line-height: .32rem;
+
+            .search-icon {
+                width: .3rem;
+                font-size: .2rem;
+                text-align: center;
+            }
+
+            .search-input {
+                flex: 1;
+                font-size: .14rem;
+                padding-right: .1rem;
+                border-radius: .16rem;
+                background: none;
+                border: none;
+                outline: none;
+                color: #242424;
+            }
+        }
+    }
+
+    .title {
+        position: relative;
+        padding: .16rem .1rem;
+        color: #B1B1B1;
+        font-size: .14rem;
+        line-height: .22;
+
+        &-close {
+            position: absolute;
+            top: .15rem;
+            right: .2rem;
+            font-size: .18rem;
+        }
+
+    }
+
+    .list {
+        overflow: hidden;
+        list-style-type: none;
+        padding: 0 .1rem;
+
+        &-item {
+            float: left;
+            border-radius: .16rem;
+            background: #F5F9FA;
+            color: #242424;
+            font-size: .12rem;
+            line-height: .32rem;
+            margin-right: .14rem;
+            margin-bottom: .14rem;
+            padding: 0 .1rem;
+        }
+    }
+}

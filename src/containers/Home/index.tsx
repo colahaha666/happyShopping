@@ -8,19 +8,23 @@ import Banner from './components/Banner';
 import CateGory from './components/Category';
 import Card from './components/Card';
 
-const localLocation = localStorage.getItem('location');
-const locationHistory = localLocation ? JSON.parse(localLocation) : null;
-
 const defaultRequestData = {
     url: '/home.json',
     method: 'POST',
     data: {
-        latitude: locationHistory ? locationHistory.latitude : 37.7304167,
-        longitude: locationHistory ? locationHistory.longitude : -122.384425,
+        latitude: 37.7304167,
+        longitude: -122.384425,
     }
 }
 
 const Home = () => {
+    const localLocation = localStorage.getItem('location');
+    const locationHistory = localLocation ? JSON.parse(localLocation) : null;
+
+    if (locationHistory) {
+        defaultRequestData.data.latitude = locationHistory.latitude;
+        defaultRequestData.data.longitude = locationHistory.longitude;
+    }
     const [requestData, setRequestData] = useState(defaultRequestData)
     const { data } = useRequest<ResponseType>(requestData)
 
@@ -40,9 +44,10 @@ const Home = () => {
                 console.log(e.message);
             }, { timeout: 500 });
         }
-    }, [])
+    }, [locationHistory])
 
     let { location, banners, categories, freshes } = data?.data || {}
+
     // let location, banners, categories, freshes = undefined
     // const dataResult = data?.data
     // if (dataResult) {
@@ -51,6 +56,7 @@ const Home = () => {
     //     categories = dataResult.categories;
     //     freshes = dataResult.freshes;
     // }
+
     return (
         <div className='page home-page'>
             <Banner location={location} banners={banners} />
