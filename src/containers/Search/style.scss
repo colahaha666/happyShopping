@@ -1,9 +1,11 @@
 .search-page {
+    font-size: .14rem;
+
     .search {
         display: flex;
-        padding: .08rem 0;
+        padding: .08rem .32rem .06rem 0;
 
-        .search-back-link {
+        &-back-link {
             text-decoration: none;
         }
 
@@ -11,31 +13,29 @@
             line-height: .32rem;
             width: .48rem;
             font-size: .18rem;
-            color: #242424;
             text-align: center;
+            color: #242424;
         }
 
         &-area {
             display: flex;
-            flex: 1;
+            line-height: .32rem;
             background-color: #F5F9FA;
             border-radius: .16rem;
-            line-height: .32rem;
+            flex: 1;
 
             .search-icon {
                 width: .3rem;
-                font-size: .2rem;
                 text-align: center;
+                color: #75818F;
             }
 
             .search-input {
                 flex: 1;
-                font-size: .14rem;
                 padding-right: .1rem;
-                border-radius: .16rem;
                 background: none;
-                border: none;
                 outline: none;
+                border: none;
                 color: #242424;
             }
         }
@@ -43,18 +43,16 @@
 
     .title {
         position: relative;
-        padding: .16rem .1rem;
+        padding: .16rem .1rem .11rem .1rem;
         color: #B1B1B1;
-        font-size: .14rem;
-        line-height: .22;
+        line-height: .22rem;
 
         &-close {
             position: absolute;
-            top: .15rem;
             right: .2rem;
+            top: .15rem;
             font-size: .18rem;
         }
-
     }
 
     .list {
