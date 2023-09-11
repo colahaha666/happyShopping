@@ -10,14 +10,12 @@ input:-webkit-autofill:focus {
     box-shadow: 0 0 0 60px #eee inset;
 }
 
-/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-    font-family: 'iconfont';
-    /* Project id 4226858 */
-    src: url('//at.alicdn.com/t/c/font_4226858_i4j4bl7lgk.woff2?t=1694338251486') format('woff2'),
-        url('//at.alicdn.com/t/c/font_4226858_i4j4bl7lgk.woff?t=1694338251486') format('woff'),
-        url('//at.alicdn.com/t/c/font_4226858_i4j4bl7lgk.ttf?t=1694338251486') format('truetype');
-}
+    font-family: 'iconfont';  /* Project id 4226858 */
+    src: url('//at.alicdn.com/t/c/font_4226858_8eerf2ahccc.woff2?t=1694418203914') format('woff2'),
+         url('//at.alicdn.com/t/c/font_4226858_8eerf2ahccc.woff?t=1694418203914') format('woff'),
+         url('//at.alicdn.com/t/c/font_4226858_8eerf2ahccc.ttf?t=1694418203914') format('truetype');
+  }
 
 .iconfont {
     font-family: "iconfont" !important;

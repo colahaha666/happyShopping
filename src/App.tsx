@@ -1,15 +1,16 @@
 import 'normalize.css';
 import './styles/border.css';
 import './styles/base.css';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Guide from './containers/Guide';
 import Login from './containers/Account/Login';
 import Account from './containers/Account';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Register from './containers/Account/Register';
 import Home from './containers/Home';
 import Nearby from './containers/Nearby';
 import Search from './containers/Search';
 import SearchList from './containers/SearchList';
+import Detail from './containers/Detail';
 
 const router = createHashRouter([
   {
@@ -32,11 +33,14 @@ const router = createHashRouter([
     path: '/nearby',
     element: <Nearby />
   }, {
-    path: '/search',
+    path: '/search/:shopId',
     element: <Search />
   }, {
-    path: '/searchList',
+    path: '/searchList/:shopId/:keyword',
     element: <SearchList />
+  }, {
+    path: '/detail/:id',
+    element: <Detail />
   }])
 
 function App() {

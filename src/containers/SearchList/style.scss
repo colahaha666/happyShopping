@@ -1,6 +1,11 @@
 .search-list-page {
     font-size: .14rem;
     background-color: #F5F9FA;
+    overflow-y: scroll;
+
+    a {
+        text-decoration: none;
+    }
 
     .search {
         display: flex;
@@ -118,6 +123,14 @@
 
 
         }
+
+    }
+
+    .bottom {
+        line-height: 1rem;
+        color: #B3C1C4;
+        font-size: .12rem;
+        text-align: center;
 
     }
 

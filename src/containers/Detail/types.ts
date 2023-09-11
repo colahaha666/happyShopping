@@ -1,13 +1,16 @@
 export type ResponseType = {
 
     sussess: boolean,
-    data: Array<{
+    data: {
         id: string,
-        keyword: string,
         imgUrl: string,
         title: string,
+        subtitle: string,
         price: number,
         sales: number,
-    }>,
+        origin: string,
+        specification: string,
+        detail: string,
+    },
 
 }

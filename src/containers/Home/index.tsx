@@ -48,15 +48,6 @@ const Home = () => {
 
     let { location, banners, categories, freshes } = data?.data || {}
 
-    // let location, banners, categories, freshes = undefined
-    // const dataResult = data?.data
-    // if (dataResult) {
-    //     location = dataResult.location;
-    //     banners = dataResult.banners;
-    //     categories = dataResult.categories;
-    //     freshes = dataResult.freshes;
-    // }
-
     return (
         <div className='page home-page'>
             <Banner location={location} banners={banners} />

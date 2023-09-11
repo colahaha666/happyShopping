@@ -1,22 +1,53 @@
+import { useState } from 'react';
+import useRequest from '../../hook/useRequest';
 import './style.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import type { ResponseType } from './types';
 
 const SearchList = () => {
+    const params = useParams<{ shopId: string, keyword: string }>();
+    const [keyword, setKeyword] = useState('');
+    const [requestData, setRequestData] = useState({
+        url: '/shop-search-list.json',
+        method: 'GET',
+        params: {
+            keyword,
+            shopId: params.shopId,
+            type: 'default'
+        }
+    })
+    const { data } = useRequest<ResponseType>(requestData)
+    const list = data?.data;
+    const navigate = useNavigate();
+
+    function handleKeyDown(key: string) {
+        if (key === 'Enter' && keyword) {
+            const newRequestData = { ...requestData }
+            newRequestData.params.keyword = keyword
+            setRequestData(newRequestData)
+        }
+    }
+
+    function handleClearKeyword() {
+        setKeyword('')
+    }
+
     return (
         <div className='page search-list-page'>
             <div className="search">
-                <Link to='/home' className='search-back-link'>
-                    <div className="search-back-icon iconfont">&#xe70b;</div>
-                </Link>
+                <div className="search-back-icon iconfont" onClick={() => navigate(-1)}>&#xe70b;</div>
                 <div className="search-area">
                     <div className="search-icon iconfont">&#xe6e1;</div>
                     <input
                         type="text"
                         className="search-input"
                         placeholder='请输入商品名称'
+                        value={keyword}
+                        onChange={e => setKeyword(e.target.value)}
+                        onKeyDown={e => handleKeyDown(e.key)}
                     />
                 </div>
-                <div className="search-clear iconfont">&#xe6a6;</div>
+                <div className="search-clear iconfont" onClick={handleClearKeyword}>&#xe6a6;</div>
             </div>
             <div className="tab">
                 <div className="tab-item tab-item-active">默认</div>
@@ -24,16 +55,27 @@ const SearchList = () => {
                 <div className="tab-item">价格</div>
             </div>
             <div className="list">
-                <div className="item">
-                    <img className='item-img' src="http://statics.dell-lee.com/shopping/list-1.png" alt="" />
-                    <div className="item-content">
-                        <p className="item-title">普罗旺斯西红柿 陕西泾阳生吃沙瓤西红柿农家自种时令生鲜 水果  ...</p>
-                        <div className="item-price">
-                            <span className="item-price-yen">&yen;</span>
-                            49.8</div>
-                        <div className="item-sales">已售388</div>
-                    </div>
-                </div>
+                {
+                    list?.map(item => {
+                        return (
+                            <Link to={`/detail/${item.id}`}>
+                                <div className="item" key={item.id}>
+                                    <img className='item-img' src={item.imgUrl} alt={item.title} />
+                                    <div className="item-content">
+                                        <p className="item-title">{item.title}</p>
+                                        <div className="item-price">
+                                            <span className="item-price-yen">&yen;</span>
+                                            {item.price}</div>
+                                        <div className="item-sales">已售{item.sales}</div>
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                    })
+                }
+            </div>
+            <div className="bottom">
+                —— 我是有底线的 ——
             </div>
         </div>
     );

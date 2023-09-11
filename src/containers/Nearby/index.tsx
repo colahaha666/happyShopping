@@ -2,7 +2,7 @@ import useRequest from '../../hook/useRequest';
 import type { ResponseType } from './types';
 import './style.scss';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const localLocation = localStorage.getItem('location');
 const locationHistory = localLocation ? JSON.parse(localLocation) : null;
@@ -34,11 +34,9 @@ const Nearby = () => {
     return (
         <div className="page nearby-page">
             <div className="title">
-                <Link to={'/home'}>
-                    <span className="iconfont title-icon">
-                        &#xe70b;
-                    </span>
-                </Link>
+                <span className="iconfont title-icon" onClick={() => navigate(-1)}>
+                    &#xe70b;
+                </span>
                 切换门店
             </div>
             <div className="search">

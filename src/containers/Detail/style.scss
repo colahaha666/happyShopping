@@ -1,0 +1,186 @@
+.detail-page {
+    overflow-y: scroll;
+    background: #F5F9FA;
+    padding-bottom: .78rem;
+
+    .title {
+        position: relative;
+        line-height: .44rem;
+        font-size: .18rem;
+        color: #242424;
+        text-align: center;
+
+        &-icon {
+            position: absolute;
+            left: .1rem;
+            top: 0;
+        }
+    }
+
+    .image {
+        display: block;
+        width: 100vw;
+        height: 100vw;
+    }
+
+    .main {
+        position: relative;
+        background-color: #52C41A;
+        border-radius: .15rem;
+        padding-top: .74rem;
+        font-size: .18rem;
+        margin: .17rem .1rem 0 .1rem;
+
+        &-price {
+            position: absolute;
+            top: .18rem;
+            left: .1rem;
+            color: #FFF;
+            font-size: .22rem;
+            font-weight: bold;
+
+            &-yen {
+                font-size: .14rem;
+                margin-right: .02rem;
+                font-weight: normal;
+            }
+        }
+
+        &-sales {
+            position: absolute;
+            top: .18rem;
+            right: .17rem;
+            color: #FFF;
+            font-size: .16rem;
+            font-weight: bold;
+        }
+
+        &-content {
+            position: relative;
+            border-radius: .15rem;
+            background: #FFF;
+            margin-top: -.15rem;
+            padding: .2rem .1rem .1rem;
+
+            &-title {
+                color: #242424;
+                font-size: .18rem;
+                line-height: .24rem;
+            }
+
+            &-subtitle {
+                color: #C9CDD4;
+                font-size: .14rem;
+                line-height: .2rem;
+                margin-top: .04rem;
+            }
+
+        }
+    }
+
+    .spec {
+        margin: .1rem .08rem 0 .08rem;
+        border-radius: 15px;
+        background: #FFF;
+
+        &-title {
+            margin-left: .1rem;
+            color: #242424;
+            font-size: .16rem;
+            line-height: .4rem;
+        }
+
+        &-content {
+            margin: 0 .12rem .12rem .12rem;
+            padding-bottom: .12rem;
+            display: flex;
+
+            &-left {
+                padding: .05rem 0;
+                width: .62rem;
+                background: #F2F3F5;
+                text-align: center;
+                border: 1px solid #D7D7D7;
+                border-radius: .05rem 0 0 .05rem;
+            }
+
+            &-right {
+                padding: .05rem .1rem;
+                flex: 1;
+                border-top: 1px solid #D7D7D7;
+                border-right: 1px solid #D7D7D7;
+                border-bottom: 1px solid #D7D7D7;
+                border-radius: 0 .05rem .05rem 0;
+            }
+
+            &-item {
+                color: #242424;
+                font-size: .14rem;
+                line-height: .2rem;
+            }
+        }
+    }
+
+    .detail {
+        margin: .1rem .08rem 0 .08rem;
+        border-radius: 15px;
+        background: #FFF;
+
+        &-title {
+            margin-left: .1rem;
+            color: #242424;
+            font-size: .16rem;
+            line-height: .4rem;
+        }
+
+        &-content {
+            padding: .13rem .16rem .16rem .16rem;
+            color: #242424;
+            font-size: .16rem;
+            line-height: .27rem;
+        }
+    }
+
+    .docker {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: .64rem;
+        background: #fff;
+        border-top: #F5F9FA .03rem solid;
+
+        .cart-icon {
+            width: 1.2rem;
+            text-align: center;
+            font-size: .14rem;
+
+            .iconfont {
+                margin-top: .1rem;
+                font-size: .24rem;
+            }
+
+            .icon-text {
+                font-size: .14rem;
+            }
+        }
+
+
+
+        .cart-button {
+            color: #FFF;
+            font-size: .16rem;
+            line-height: .24rem;
+            flex: 1;
+            margin-right: .16rem;
+            height: .44rem;
+            line-height: .44rem;
+            font-size: .16rem;
+            background: #73d13d;
+            border-radius: .22rem;
+            text-align: center;
+            margin-top: .1rem;
+        }
+    }
+}
