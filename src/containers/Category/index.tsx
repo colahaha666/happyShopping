@@ -3,6 +3,7 @@ import useRequest from '../../hook/useRequest';
 import './style.scss';
 import { CategoryAndTagResponseType, ProductResponseType, ProductType } from './types';
 import { message } from '../../utils/message';
+import Docker from '../../components/Docker';
 
 const Category = () => {
     const [products, setProducts] = useState<Array<ProductType>>([])
@@ -10,19 +11,13 @@ const Category = () => {
     const [tags, setTags] = useState<string[]>([]);
     const [keyword, setKeyword] = useState('');
 
-    const [productRequestData, setProductRequestData] = useState({
-        url: '/category-search-list.json',
-        method: 'POST',
-        data: {
-            tag: '',
-            keyword: '',
-            category: ''
-        }
-    })
-    const { request } = useRequest<CategoryAndTagResponseType>({ manual: true });
+    const [currentCategory, setCurrentCategory] = useState('');
+    const [currentTag, setCurrentTag] = useState('');
+
+    const { request: tagRequest } = useRequest<CategoryAndTagResponseType>({ manual: true });
     const { request: productRequest } = useRequest<ProductResponseType>({ manual: true });
     useEffect(() => {
-        request({
+        tagRequest({
             url: '/category-list.json',
             method: 'GET',
         }).then(data => {
@@ -34,16 +29,16 @@ const Category = () => {
         }).catch(e => {
             message(e?.message)
         })
-    }, [request])
+    }, [tagRequest])
 
     useEffect(() => {
         productRequest({
             url: '/category-search-list.json',
             method: 'POST',
             data: {
-                tag: '',
+                tag: currentTag,
                 keyword,
-                category: ''
+                category: currentCategory
             }
         }).then(data => {
             if (data?.success) {
@@ -53,9 +48,9 @@ const Category = () => {
         }).catch(e => {
             message(e?.message)
         })
-    }, [productRequest, keyword])
+    }, [productRequest, keyword, currentTag, currentCategory])
 
-    function handleKeyDown(key: string, target: any) {
+    function handleKeyDown(key: string, target: EventTarget & HTMLInputElement) {
         if (key === 'Enter') {
             setKeyword(target.value)
         }
@@ -73,26 +68,40 @@ const Category = () => {
                         type="text"
                         className="search-input"
                         placeholder='请输入商品名称'
-                        onKeyDown={e => handleKeyDown(e.key, e.target)}
+                        onKeyDown={e => handleKeyDown(e.key, e.currentTarget)}
                     />
                 </div>
             </div>
             <div className="category">
-                <div className="category-item category-item-active">全部商品</div>
+                <div
+                    className={currentCategory === '' ? 'category-item category-item-active' : 'category-item'}
+                    onClick={() => setCurrentCategory('')}
+                >全部商品</div>
                 {
                     (categories || []).map(item => {
                         return (
-                            <div className="category-item" key={item.id}>{item.name}</div>
+                            <div
+                                className={currentCategory === item.id ? 'category-item category-item-active' : 'category-item'}
+                                key={item.id}
+                                onClick={() => setCurrentCategory(item.id)}
+                            >{item.name}</div>
                         )
                     })
                 }
             </div>
             <div className="tag">
-                <div className="tag-item tag-item-active">全部</div>
+                <div
+                    className={currentTag === '' ? 'tag-item tag-item-active' : 'tag-item'}
+                    onClick={() => setCurrentTag('')}
+                >全部</div>
                 {
                     tags.map((item, index) => {
                         return (
-                            <div className="tag-item" key={item + index}>{item}</div>
+                            <div
+                                className={currentTag === item ? 'tag-item tag-item-active' : 'tag-item'}
+                                key={item + index}
+                                onClick={() => setCurrentTag(item)}
+                            >{item}</div>
                         )
                     })
                 }
@@ -122,24 +131,7 @@ const Category = () => {
                 }
             </div>
 
-            <div className="docker">
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe604;</p>
-                    <p className='docker-ite-title'>首页</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon docker-item-active'>&#xe60d;</p>
-                    <p className='docker-ite-title'>分类</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe600;</p>
-                    <p className='docker-ite-title'>购物车</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
-                    <p className='docker-ite-title'>我的</p>
-                </div>
-            </div>
+            <Docker activeName='分类'></Docker>
         </div>
     );
 }

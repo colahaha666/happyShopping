@@ -7,6 +7,7 @@ import type { ResponseType } from './types';
 import Banner from './components/Banner';
 import CateGory from './components/Category';
 import Card from './components/Card';
+import Docker from '../../components/Docker';
 
 const defaultRequestData = {
     url: '/home.json',
@@ -57,24 +58,7 @@ const Home = () => {
             <div className="bottom">
                 —— 我是有底线的 ——
             </div>
-            <div className="docker">
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon docker-item-active'>&#xe604;</p>
-                    <p className='docker-ite-title'>首页</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe60d;</p>
-                    <p className='docker-ite-title'>分类</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe600;</p>
-                    <p className='docker-ite-title'>购物车</p>
-                </div>
-                <div className="docker-item">
-                    <p className='iconfont docker-item-icon'>&#xe61c;</p>
-                    <p className='docker-ite-title'>我的</p>
-                </div>
-            </div>
+            <Docker activeName='首页'></Docker>
         </div>
     )
 }
