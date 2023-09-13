@@ -2,53 +2,84 @@ import { useEffect, useState } from 'react';
 import Docker from '../../components/Docker';
 import useRequest from '../../hook/useRequest';
 import './style.scss'
-import type { ProductReponseType, ResponseType } from './types';
+import type { ListItemType, ResponseType } from './types';
 import { message } from '../../utils/message';
 
 const Cart = () => {
-    const { request } = useRequest<ResponseType>({ manual: true })
-    const [cartProducts, setCartProducts] = useState<ProductReponseType>([])
-    const [cartList, setCartList] = useState()
+    const [list, setList] = useState<ListItemType[]>([])
+    const { request } = useRequest<ResponseType>({ manual: true });
     useEffect(() => {
         request({
             url: '/cartProducts.json',
             method: 'GET',
-        }).then(data => {
-            setProducts(data.data)
+        }).then((data) => {
+            const list = data.data;
+            const newList = list.map(shop => {
+                const newCartList = shop.cartList.map(product => {
+                    return { ...product, selected: false }
+                })
+                return { shopId: shop.shopId, shopName: shop.shopName, cartList: newCartList }
+            })
+            setList(newList);
 
         }).catch(e => {
-            message(e.message)
+            message(e.message);
         })
     }, [request])
+
+    function handleCountChange(shopId: string, productId: string, count: string) {
+        const newList = [...list];
+        const shop = newList.find(shop => shop.shopId === shopId)
+        shop?.cartList.forEach(product => {
+            if (product.productId === productId) {
+                product.count = Number.isNaN(+count) ? 0 : +count;
+            }
+        })
+
+        setList(newList)
+    }
 
     return (
         <div className='page cart-page'>
             <div className="title">购物车</div>
-            <div className="shop">
-                <div className="shop-title">
-                    <div className="radio"></div>
-                    <span className="iconfont">&#xe639;</span>喜梅蔬菜店
-                </div>
-                <div className="shop-products">
-                    {
-                        products.map(item => {
-                            <div className="shop-product">
+            {
+                list.map(shop => {
+                    return (
+                        <div className="shop" key={shop.shopId}>
+                            <div className="shop-title">
                                 <div className="radio"></div>
-                                <img src="" alt="" className='shop-product-img' />
-                                <div className="shop-product-content">
-                                    <div className="shop-product-title">潍坊水果萝卜10斤水果萝卜甜脆水果型潍县青沙窝天津萝卜…</div>
-                                    <div className="shop-product-kilo">0.45kg</div>
-                                    <div className="shop-product-price">
-                                        <span className="shop-product-price-yen">&yen;</span>99
-                                    </div>
-                                    <input type="text" className="shop-product-count" value='3' />
-                                </div>
+                                <span className="iconfont">&#xe639;</span>{shop.shopName}
                             </div>
-                        })
-                    }
+                            <div className="shop-products">
+                                {
+                                    shop.cartList.map(product => {
+                                        return (
+                                            <div className="shop-product" key={product.productId}>
+                                                <div className="radio"></div>
+                                                <img src={product.imgUrl} alt={product.title} className='shop-product-img' />
+                                                <div className="shop-product-content">
+                                                    <div className="shop-product-title">{product.title}</div>
+                                                    <div className="shop-product-kilo">{product.weight}</div>
+                                                    <div className="shop-product-price">
+                                                        <span className="shop-product-price-yen">&yen;</span>{product.price}
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        className="shop-product-count"
+                                                        value={product.count}
+                                                        onChange={e => handleCountChange(shop.shopId, product.productId, e.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    )
+                })
+            }
 
-                </div>
-            </div>
             <div className="total-price">
                 <div className="select-all">
                     <div className="radio"></div>
