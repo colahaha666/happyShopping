@@ -105,4 +105,56 @@
             }
         }
     }
+
+    .total-price {
+        display: flex;
+        position: fixed;
+        height: .5rem;
+        line-height: .5rem;
+        bottom: .5rem;
+        left: 0;
+        right: 0;
+        background: #FFF;
+        font-size: .15rem;
+
+        .select-all {
+            width: .94rem;
+
+            &-text {
+                margin-left: .44rem;
+                color: #BBB;
+            }
+        }
+
+        .total {
+            display: flex;
+            flex: 1;
+
+            &-text {
+                flex: 1;
+                font-size: .15rem;
+                color: #242424;
+                text-align: right;
+            }
+
+            &-price-inner {
+                width: .8rem;
+                text-align: right;
+                color: #CF1322;
+                font-size: .18rem;
+                margin-right: .08rem;
+
+                &-yen {
+                    font-size: .12rem;
+                }
+            }
+        }
+
+        .check {
+            width: 1.35rem;
+            background: #73D13D;
+            text-align: center;
+            color: #FFF;
+        }
+    }
 }
