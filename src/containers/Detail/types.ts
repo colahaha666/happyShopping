@@ -1,5 +1,4 @@
 export type ResponseType = {
-
     sussess: boolean,
     data: {
         id: string,
@@ -12,5 +11,11 @@ export type ResponseType = {
         specification: string,
         detail: string,
     },
+}
 
+export type CartResponseType = {
+    sussess: boolean,
+    data: {
+        count: number,
+    },
 }

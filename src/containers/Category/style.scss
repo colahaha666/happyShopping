@@ -158,4 +158,108 @@
             }
         }
     }
+
+    .cart {
+        font-size: .14rem;
+
+        &-buttons {
+            display: flex;
+            padding: .06rem 0 .1rem 0;
+        }
+
+        &-button {
+            flex: 1;
+            font-size: .16rem;
+            line-height: .44rem;
+            border-radius: .22rem;
+            text-align: center;
+            color: #FFF;
+
+            &-left {
+                margin-left: .16rem;
+                margin-right: .12rem;
+                background: #95DE64;
+            }
+
+            &-right {
+                margin-left: .12rem;
+                margin-right: .16rem;
+                background: #73D13D;
+            }
+        }
+
+        &-content {
+            padding: .2rem .2rem .34rem .2rem;
+            display: flex;
+            border-bottom: #F4F4F4 solid .01rem;
+
+            &-img {
+                width: .7rem;
+                height: .7rem;
+                display: block;
+                margin-right: .48rem;
+            }
+
+            &-info {
+                font-size: .12rem;
+            }
+
+            &-title {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                margin-right: .45rem;
+                color: #242424;
+                font-size: .12rem;
+                line-height: .18rem;
+            }
+
+            &-price {
+                margin-top: .1rem;
+                color: #F81C00;
+                font-size: .22rem;
+
+                &-yen {
+                    font-size: .14rem;
+                    margin-right: .02rem;
+                    font-weight: normal;
+                }
+
+            }
+
+        }
+
+        &-count {
+            padding: .35rem .16rem;
+
+            &-content {
+                color: #242424;
+                font-size: .14rem;
+                line-height: .28rem;
+                height: .28rem;
+            }
+
+            &-counter {
+                float: right;
+            }
+
+            &-button,
+            &-text {
+                width: .28rem;
+                height: .28rem;
+                display: inline-block;
+                background: #F4F4F4;
+                color: #242424;
+                font-size: .18rem;
+                line-height: .27rem;
+                text-align: center;
+            }
+
+            &-text {
+                margin: 0 .1rem;
+            }
+        }
+    }
 }
