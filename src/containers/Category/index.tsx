@@ -4,7 +4,7 @@ import './style.scss';
 import { CartResponseType, CartType, CategoryAndTagResponseType, ProductResponseType, ProductType } from './types';
 import { message } from '../../utils/message';
 import Docker from '../../components/Docker';
-import Popover from '../../components/popover';
+import Popover from '../../components/Popover';
 import { useNavigate } from 'react-router-dom';
 
 const Category = () => {

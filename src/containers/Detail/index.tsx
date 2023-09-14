@@ -2,7 +2,7 @@ import './style.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { ResponseType, CartResponseType } from './types';
 import useRequest from '../../hook/useRequest';
-import Popover from '../../components/popover';
+import Popover from '../../components/Popover';
 import { useEffect, useRef, useState } from 'react';
 import { message } from '../../utils/message';
 import { CartChangeResponseType } from '../../types';
