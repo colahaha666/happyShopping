@@ -5,8 +5,6 @@ import { message } from '../../utils/message';
 import { useNavigate } from 'react-router-dom';
 import type { RegisterResponseType } from './types';
 
-
-
 const Register = () => {
 
     const navigate = useNavigate();

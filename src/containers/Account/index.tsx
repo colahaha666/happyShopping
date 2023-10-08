@@ -17,7 +17,6 @@ const Account = () => {
         }
     }, [navigate])
 
-
     return (
         <div className="page account-page">
             <div className="tab">

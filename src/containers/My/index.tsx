@@ -51,7 +51,7 @@ const My = () => {
                 <div className="my-functions">
                     {icons.map(item => {
                         return (
-                            <div className="my-functions-item">
+                            <div className="my-functions-item" key={item.icon}>
                                 <div className="my-functions-item-icon iconfont" dangerouslySetInnerHTML={{ __html: item.icon }}></div>
                                 <div className="my-functions-item-text">{item.text}</div>
                             </div>
