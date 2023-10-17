@@ -1,7 +1,7 @@
 import './style.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { ResponseType, CartResponseType } from './types';
-import useRequest from '../../hook/useRequest';
+import useRequest from '../../hooks/useRequest';
 import Popover from '../../components/Popover';
 import { useEffect, useRef, useState } from 'react';
 import { message } from '../../utils/message';

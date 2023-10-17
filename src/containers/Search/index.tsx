@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './style.scss';
 import { useNavigate, useParams } from 'react-router-dom';
-import useRequest from '../../hook/useRequest';
+import useRequest from '../../hooks/useRequest';
 import { ResponseType } from './types';
 
 const defaultRequestData = {

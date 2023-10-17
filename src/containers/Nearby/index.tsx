@@ -1,4 +1,4 @@
-import useRequest from '../../hook/useRequest';
+import useRequest from '../../hooks/useRequest';
 import type { ResponseType } from './types';
 import './style.scss';
 import { useState } from 'react';

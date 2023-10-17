@@ -2,7 +2,7 @@ import 'swiper/css';
 import './style.scss';
 import { useEffect, useState } from 'react';
 
-import useRequest from '../../hook/useRequest';
+import useRequest from '../../hooks/useRequest';
 import type { ResponseType } from './types';
 import Banner from './components/Banner';
 import CateGory from './components/Category';

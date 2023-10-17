@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useRequest from '../../hook/useRequest';
+import useRequest from '../../hooks/useRequest';
 import './style.scss';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { ResponseType } from './types';
